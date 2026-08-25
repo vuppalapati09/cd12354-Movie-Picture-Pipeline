@@ -6,11 +6,13 @@ on:
       - main
     paths:
       - 'starter/backend/**'
+
   pull_request:
     branches:
       - main
     paths:
       - 'starter/backend/**'
+
   workflow_dispatch:
 
 env:
@@ -74,6 +76,7 @@ jobs:
   build:
     name: Build and Push
     runs-on: ubuntu-latest
+
     needs:
       - lint
       - test
@@ -105,7 +108,6 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
