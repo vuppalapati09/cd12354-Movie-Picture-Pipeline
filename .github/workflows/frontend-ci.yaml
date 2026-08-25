@@ -110,8 +110,11 @@ jobs:
       - name: Build Docker image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REACT_APP_MOVIE_API_URL: http://a38b7ac8df52c42b183aef1176375b97-640126808.us-east-1.elb.amazonaws.com
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker build \
+            --build-arg REACT_APP_MOVIE_API_URL=$REACT_APP_MOVIE_API_URL \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
 
       - name: Push Docker image to ECR
         env:
