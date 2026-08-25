@@ -175,3 +175,4 @@ jobs:
           kubectl get deployment frontend
           kubectl get pods -l app=frontend
           kubectl get svc
+          kubectl logs deployment/frontend --tail=100
